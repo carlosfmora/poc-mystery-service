@@ -1,0 +1,1 @@
+create adapter input
