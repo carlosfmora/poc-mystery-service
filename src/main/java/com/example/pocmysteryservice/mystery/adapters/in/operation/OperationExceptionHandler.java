@@ -31,7 +31,11 @@ public class OperationExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorMessage> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorMessage("El cuerpo de la solicitud no es válido", null));
+        List<ErrorDetail> details = new ArrayList<>();
+        details.add(new ErrorDetail(null,"posible tipo de dato invalido para un atributo"));
+        details.add(new ErrorDetail(null,"posible atributo invalido"));
+        details.add(new ErrorDetail(null,"posible mensaje ilegible"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorMessage("El cuerpo de la solicitud no es válido", details));
     }
 
     @ExceptionHandler(UncheckedInputDataException.class)
