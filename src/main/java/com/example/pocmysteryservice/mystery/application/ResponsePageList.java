@@ -24,4 +24,13 @@ public class ResponsePageList<T> {
     public List<T> getData() {
         return data;
     }
+
+    @Override
+    public String toString() {
+        return "ResponsePageList{" +
+            "page=" + page +
+            ", pageSize=" + pageSize +
+            ", data=" + data +
+            '}';
+    }
 }

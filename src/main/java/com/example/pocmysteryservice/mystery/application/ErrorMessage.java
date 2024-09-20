@@ -24,4 +24,12 @@ public record ErrorMessage(String message,
     public List<ErrorDetail> getDetails() {
         return details;
     }
+
+    @Override
+    public String toString() {
+        return "ErrorMessage{" +
+            "message='" + message + '\'' +
+            ", details=" + details +
+            '}';
+    }
 }

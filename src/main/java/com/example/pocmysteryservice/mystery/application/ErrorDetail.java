@@ -28,4 +28,12 @@ public record ErrorDetail(String path, String message) {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        return "ErrorDetail{" +
+            "path='" + path + '\'' +
+            ", message='" + message + '\'' +
+            '}';
+    }
 }

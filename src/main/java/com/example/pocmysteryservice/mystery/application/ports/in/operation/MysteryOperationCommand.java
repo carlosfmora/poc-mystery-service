@@ -1,17 +1,22 @@
 package com.example.pocmysteryservice.mystery.application.ports.in.operation;
 
 import com.example.pocmysteryservice.mystery.application.UncheckedInputDataException;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.UUID;
 
 public class MysteryOperationCommand {
+
+    @NotNull
     private final UUID uuid;
+    @Positive
     private final double value;
 
     private MysteryOperationCommand(UUID uuid, double value) {
         this.uuid = uuid;
         this.value = value;
-        this.execute();
+        UncheckedInputDataException.ensureInputData(this);
     }
 
     /**
@@ -24,10 +29,11 @@ public class MysteryOperationCommand {
         return new MysteryOperationCommand(uuid, value);
     }
 
-    /**
-     * @throws UncheckedInputDataException
-     */
-    private void execute() {
+    public UUID getAccountId() {
+        return this.uuid;
+    }
 
+    public double getAmount() {
+        return this.value;
     }
 }
