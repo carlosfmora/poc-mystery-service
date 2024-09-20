@@ -5,6 +5,8 @@ import com.example.pocmysteryservice.mystery.application.InternalFailureExceptio
 import com.example.pocmysteryservice.mystery.application.Mystery;
 import com.example.pocmysteryservice.mystery.application.ports.in.operation.MysteryOperationCommand;
 import com.example.pocmysteryservice.mystery.application.ports.in.operation.MysteryOperationUseCase;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +20,7 @@ public class OperationRestController {
     }
 
     @PostMapping("mystery")
-    Mystery operation(@RequestBody RequestMystery requestMystery) throws InternalFailureException, BusinessRuleViolationException {
+    Mystery operation(@RequestBody @Validated RequestMystery requestMystery) throws InternalFailureException, BusinessRuleViolationException {
         return this.useCase.mysteryOperation(MysteryOperationCommand.from(requestMystery.getId(), requestMystery.getValue()));
     }
 }
